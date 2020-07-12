@@ -5,11 +5,7 @@ import (
 	"time"
 )
 
-const (
-	Million     = 1000000
-	TenMillions = 10 * Million
-	CountLoop   = 100
-)
+const CountLoop = 50
 
 type TestStructure struct {
 	Test1  int64

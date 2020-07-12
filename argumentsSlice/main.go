@@ -5,10 +5,13 @@ import (
 	"math/rand"
 	"time"
 
-	"testgo"
+	"github.com/stepanbukhtii/testgo"
 )
 
-// Size usage 358.4 kB 0 B time usage 1m40.233014837s
+// Size usage for init data 358.4 kB
+// Using value loop time usage 1m52.5549992s
+// Using index loop time usage 1m52.9078748s
+// Using index loop first count loop time usage 1m52.1697335s
 func main() {
 	p := testgo.MemTimeProfiler{}
 

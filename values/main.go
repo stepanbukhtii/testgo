@@ -4,8 +4,12 @@ import (
 	"fmt"
 	"math/rand"
 
-	"testgo"
+	"github.com/stepanbukhtii/testgo"
 )
+
+// Size usage for init data 10.4 GB
+// first loop valuer -> loop subjects 5m25.1937319s
+// first loop subject -> loop values 5m21.5470585s
 
 type Value struct {
 	Output1 testgo.HardWork
@@ -37,10 +41,10 @@ func main() {
 	numberSubjects := make([]Value, 100*100*100*100)
 	for i := range numberSubjects {
 		numberSubjects[i] = Value{
-			Output1: testgo.NewHardWork(i),
-			Output2: testgo.NewHardWork(i),
-			Output3: testgo.NewHardWork(i),
-			Output4: testgo.NewHardWork(i),
+			Output1: testgo.NewHardWork(i % 10 + 10),
+			Output2: testgo.NewHardWork(i % 10 + 10),
+			Output3: testgo.NewHardWork(i % 10 + 10),
+			Output4: testgo.NewHardWork(i % 10 + 10),
 		}
 	}
 	p.Finish()
@@ -54,10 +58,11 @@ func main() {
 	p.Start()
 	for i := 0; i < testgo.CountLoop; i++ {
 		for y := range numberSubjects {
-			numberSubjects[y].Output1.Update(randomValues[i])
-			numberSubjects[y].Output2.Update(randomValues[i])
-			numberSubjects[y].Output3.Update(randomValues[i])
-			numberSubjects[y].Output4.Update(randomValues[i])
+			value := randomValues[i]
+			numberSubjects[y].Output1.Update(value)
+			numberSubjects[y].Output2.Update(value)
+			numberSubjects[y].Output3.Update(value)
+			numberSubjects[y].Output4.Update(value)
 			numberSubjects[y].Handle()
 		}
 	}
@@ -67,10 +72,11 @@ func main() {
 	p.Start()
 	for _, subject := range numberSubjects {
 		for i := 0; i < testgo.CountLoop; i++ {
-			subject.Output1.Update(randomValues[i])
-			subject.Output2.Update(randomValues[i])
-			subject.Output3.Update(randomValues[i])
-			subject.Output4.Update(randomValues[i])
+			value := randomValues[i]
+			subject.Output1.Update(value)
+			subject.Output2.Update(value)
+			subject.Output3.Update(value)
+			subject.Output4.Update(value)
 			subject.Handle()
 		}
 	}
